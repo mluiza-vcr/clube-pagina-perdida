@@ -38,7 +38,7 @@ export default function AnimatedTitle() {
   return (
     <h1
       key={key}
-      className="text-md md:text-4xl tracking-wide text-poetic-light-link dark:text-poetic-dark-link font-mono flex"
+      className="text-2xl mx-auto md:mx-0 md:text-4xl tracking-wide text-poetic-light-link dark:text-poetic-dark-link font-mono flex"
     >
       {title.split("").map((char, index) => (
         <motion.span

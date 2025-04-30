@@ -1,7 +1,8 @@
-import { Moon, Sun, BookOpen } from "lucide-react";
+import { Moon, Sun, BookOpen, Home, Heart } from "lucide-react";
 import AnimatedTitle from "./AnimatedTitle";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Link } from "@remix-run/react";
 
 export default function Header() {
   const [dark, setDark] = useState<boolean | null>(null);
@@ -50,26 +51,53 @@ export default function Header() {
   }
 
   return (
-    <header className="p-6 flex items-center justify-between w-full">
+    <header className="p-6 space-y-2 md:space-y-0 flex flex-col md:flex-row md:items-center md:justify-between w-full">
       <AnimatedTitle />
-      <button
-        onClick={toggleTheme}
-        className="p-2 rounded-full transition-all hover:scale-110 hover:bg-poetic-light-accent/10 dark:hover:bg-poetic-dark-accent/10"
-        aria-label={dark ? "trocar para luz" : "trocar para noite"}
-      >
-        <AnimatePresence mode="wait" initial={false}>
+
+      <nav className="flex items-center space-x-4">
+        <Link to="/" aria-label="Ir para a home">
           <motion.div
-            key={dark ? "sun" : "moon"}
-            initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
-            animate={{ rotate: 0, opacity: 1, scale: 1 }}
-            exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
-            className={rotate ? "rotate-180" : ""} // Adicionar rotação
+            whileHover={{ scale: 1.1, rotate: 10 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-2 rounded-full transition-all hover:bg-poetic-light-accent/10 dark:hover:bg-poetic-dark-accent/10 text-gray-800 dark:text-gray-200"
           >
-            {dark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            <Home className="w-6 h-6" />
           </motion.div>
-        </AnimatePresence>
-      </button>
+        </Link>
+
+        <Link to="/favoritos" aria-label="Ir para favoritos">
+          <motion.div
+            whileHover={{ scale: 1.1, rotate: -10 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-2 rounded-full transition-all hover:bg-poetic-light-accent/10 dark:hover:bg-poetic-dark-accent/10 text-gray-800 dark:text-gray-200"
+          >
+            <Heart className="w-6 h-6" />
+          </motion.div>
+        </Link>
+
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-full transition-all hover:scale-110 hover:bg-poetic-light-accent/10 dark:hover:bg-poetic-dark-accent/10"
+          aria-label={dark ? "trocar para luz" : "trocar para noite"}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={dark ? "sun" : "moon"}
+              initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
+              animate={{ rotate: 0, opacity: 1, scale: 1 }}
+              exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3 }}
+              className={rotate ? "rotate-180" : ""}
+            >
+              {dark ? (
+                <Sun className="w-6 h-6" />
+              ) : (
+                <Moon className="w-6 h-6" />
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </button>
+      </nav>
     </header>
   );
 }
