@@ -2,6 +2,7 @@ import { books } from "~/data/books";
 import { FavoriteButton } from "./FavoriteButton";
 import { useEffect, useState } from "react";
 import BookComments from "./BookComments";
+import FragmentsModal from "./FragmentsModal";
 
 type Book = (typeof books)[number];
 
@@ -47,11 +48,18 @@ export default function BookDetailCard({ book }: { book: Book }) {
   return (
     <>
       <div className="grid md:grid-cols-2 gap-8">
-        <img
-          src={book.coverImage}
-          alt={book.title}
-          className="w-full rounded shadow-lg"
-        />
+        <div className="flex flex-col items-center gap-5">
+          <img
+            src={book.coverImage}
+            alt={book.title}
+            className="w-full rounded shadow-lg"
+          />
+          <FragmentsModal title={book.title} fragments={book.fragments} />
+          <FavoriteButton
+            isFavorite={isFavorite}
+            toggleFavorite={toggleFavorite}
+          />
+        </div>
 
         <div>
           <h1 className="text-3xl font-mono text-poetic-light-link dark:text-poetic-dark-link mb-2">
@@ -66,12 +74,6 @@ export default function BookDetailCard({ book }: { book: Book }) {
           <p className="leading-relaxed text-gray-800 dark:text-gray-200">
             {book.description}
           </p>
-          <div className="flex justify-end">
-            <FavoriteButton
-              isFavorite={isFavorite}
-              toggleFavorite={toggleFavorite}
-            />
-          </div>
         </div>
       </div>
       <div className="mt-10">

@@ -66,7 +66,7 @@ export default function BookCard({ book }: { book: Book }) {
           {book.author} • {book.year}
         </p>
         <p className="text-sm mt-2 text-gray-600 dark:text-gray-400">
-          {book.description}
+          {book.synopsis}
         </p>
       </Link>
     </div>

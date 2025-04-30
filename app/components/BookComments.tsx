@@ -42,12 +42,12 @@ export default function BookComments() {
   };
 
   return (
-    <div className="bg-poetic-light-bg dark:bg-poetic-dark-bg">
-      <h2 className="text-2xl font-serif text-poetic-light-link dark:text-poetic-dark-link mb-4">
+    <div>
+      <h2 className="text-2xl font-mono text-poetic-light-link dark:text-poetic-dark-link mb-4">
         Comentários
       </h2>
 
-      <div className="mb-6">
+      <div className="mb-6 flex flex-col items-center">
         <textarea
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
@@ -57,7 +57,7 @@ export default function BookComments() {
         />
         <button
           onClick={addComment}
-          className="mt-3 px-4 py-2 bg-poetic-light-accent text-poetic-light-bg dark:bg-poetic-dark-accent dark:text-poetic-dark-bg rounded-lg font-medium hover:bg-opacity-90 transition"
+          className="mt-3 px-4 py-2 bg-poetic-light-link dark:bg-poetic-dark-link text-white rounded-lg font-medium hover:bg-opacity-90 transition"
         >
           Adicionar comentário
         </button>
